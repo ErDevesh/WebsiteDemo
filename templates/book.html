@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books - MSBTE Study Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">
+        <i class="fas fa-graduation-cap"></i> MSBTE Study Hub
+    </div>
+    <div class="nav-links">
+        <a href="/"><i class="fas fa-home"></i> Home</a>
+        <a href="/model_answer"><i class="fas fa-file-pdf"></i> Model Answers</a>
+        <a href="/branch"><i class="fas fa-code-branch"></i> Branches</a>
+        <a href="/mcq"><i class="fas fa-question-circle"></i> MCQ</a>
+        <a href="/books" class="active"><i class="fas fa-book"></i> Books</a>
+        <a href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+    <div class="mobile-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+    <h1><i class="fas fa-book"></i> Recommended Books</h1>
+    <p>Curated list of best books for MSBTE curriculum</p>
+</div>
+
+<!-- SEARCH BOOKS -->
+<div class="search-card">
+    <h2><i class="fas fa-search"></i> Find Books</h2>
+    <form action="/search_books" method="POST" class="search-form">
+        <div class="input-group">
+            <i class="fas fa-code-branch"></i>
+            <select name="branch" required>
+                <option value="" disabled selected>Select Branch</option>
+                <option value="computer">💻 Computer Engineering</option>
+                <option value="mechanical">⚙️ Mechanical Engineering</option>
+                <option value="electrical">⚡ Electrical Engineering</option>
+                <option value="electronics">📱 Electronics Engineering</option>
+                <option value="civil">🏗️ Civil Engineering</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <i class="fas fa-layer-group"></i>
+            <select name="semester" required>
+                <option value="" disabled selected>Select Semester</option>
+                <option value="1">📚 Semester 1</option>
+                <option value="2">📚 Semester 2</option>
+                <option value="3">📚 Semester 3</option>
+                <option value="4">📚 Semester 4</option>
+                <option value="5">📚 Semester 5</option>
+                <option value="6">📚 Semester 6</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <i class="fas fa-book"></i>
+            <input type="text" name="subject" placeholder="Enter subject name or author" required>
+        </div>
+
+        <button type="submit" class="search-btn">
+            <i class="fas fa-search"></i> Search Books
+        </button>
+    </form>
+</div>
+
+<!-- BOOKS GRID -->
+<div class="grid-container">
+    <!-- Book 1 -->
+    <div class="card book-card">
+        <div class="book-cover">
+            <i class="fas fa-book-open"></i>
+        </div>
+        <div class="book-info">
+            <h3>Wireless Mobile Network</h3>
+            <p class="author">by Dr. S. K. Sharma</p>
+            <p class="details">5th Edition • 450 pages</p>
+            <div class="meta" style="margin: 10px 0;">
+                <span><i class="fas fa-star" style="color: #FFE000;"></i> 4.5</span>
+                <span><i class="fas fa-download"></i> 2.3k reads</span>
+            </div>
+            <button class="card-btn" style="width: 100%;">
+                <i class="fas fa-eye"></i> View Book
+            </button>
+        </div>
+    </div>
+
+    <!-- Book 2 -->
+    <div class="card book-card">
+        <div class="book-cover">
+            <i class="fas fa-book-open"></i>
+        </div>
+        <div class="book-info">
+            <h3>Data Structure & Algorithms</h3>
+            <p class="author">by Prof. R. B. Patel</p>
+            <p class="details">3rd Edition • 380 pages</p>
+            <div class="meta" style="margin: 10px 0;">
+                <span><i class="fas fa-star" style="color: #FFE000;"></i> 4.8</span>
+                <span><i class="fas fa-download"></i> 3.1k reads</span>
+            </div>
+            <button class="card-btn" style="width: 100%;">
+                <i class="fas fa-eye"></i> View Book
+            </button>
+        </div>
+    </div>
+
+    <!-- Book 3 -->
+    <div class="card book-card">
+        <div class="book-cover">
+            <i class="fas fa-book-open"></i>
+        </div>
+        <div class="book-info">
+            <h3>Database Management Systems</h3>
+            <p class="author">by M. L. Gupta</p>
+            <p class="details">2nd Edition • 420 pages</p>
+            <div class="meta" style="margin: 10px 0;">
+                <span><i class="fas fa-star" style="color: #FFE000;"></i> 4.6</span>
+                <span><i class="fas fa-download"></i> 1.9k reads</span>
+            </div>
+            <button class="card-btn" style="width: 100%;">
+                <i class="fas fa-eye"></i> View Book
+            </button>
+        </div>
+    </div>
+
+    <!-- Book 4 -->
+    <div class="card book-card">
+        <div class="book-cover">
+            <i class="fas fa-book-open"></i>
+        </div>
+        <div class="book-info">
+            <h3>Operating Systems Concepts</h3>
+            <p class="author">by A. S. Tanenbaum</p>
+            <p class="details">9th Edition • 520 pages</p>
+            <div class="meta" style="margin: 10px 0;">
+                <span><i class="fas fa-star" style="color: #FFE000;"></i> 4.9</span>
+                <span><i class="fas fa-download"></i> 4.2k reads</span>
+            </div>
+            <button class="card-btn" style="width: 100%;">
+                <i class="fas fa-eye"></i> View Book
+            </button>
+        </div>
+    </div>
+
+    <!-- Book 5 -->
+    <div class="card book-card">
+        <div class="book-cover">
+            <i class="fas fa-book-open"></i>
+        </div>
+        <div class="book-info">
+            <h3>Computer Networks</h3>
+            <p class="author">by B. A. Forouzan</p>
+            <p class="details">5th Edition • 480 pages</p>
+            <div class="meta" style="margin: 10px 0;">
+                <span><i class="fas fa-star" style="color: #FFE000;"></i> 4.7</span>
+                <span><i class="fas fa-download"></i> 2.8k reads</span>
+            </div>
+            <button class="card-btn" style="width: 100%;">
+                <i class="fas fa-eye"></i> View Book
+            </button>
+        </div>
+    </div>
+
+    <!-- Book 6 -->
+    <div class="card book-card">
+        <div class="book-cover">
+            <i class="fas fa-book-open"></i>
+        </div>
+        <div class="book-info">
+            <h3>Software Engineering</h3>
+            <p class="author">by R. S. Pressman</p>
+            <p class="details">7th Edition • 560 pages</p>
+            <div class="meta" style="margin: 10px 0;">
+                <span><i class="fas fa-star" style="color: #FFE000;"></i> 4.5</span>
+                <span><i class="fas fa-download"></i> 1.5k reads</span>
+            </div>
+            <button class="card-btn" style="width: 100%;">
+                <i class="fas fa-eye"></i> View Book
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3><i class="fas fa-graduation-cap"></i> MSBTE Study Hub</h3>
+            <p>Your ultimate destination for MSBTE study materials, notes, and practice questions.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
+                <li><a href="/model_answer"><i class="fas fa-chevron-right"></i> Model Answers</a></li>
+                <li><a href="/branch"><i class="fas fa-chevron-right"></i> Branches</a></li>
+                <li><a href="/mcq"><i class="fas fa-chevron-right"></i> MCQ Practice</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Resources</h4>
+            <ul>
+                <li><a href="/books"><i class="fas fa-chevron-right"></i> Textbooks</a></li>
+                <li><a href="/previous-papers"><i class="fas fa-chevron-right"></i> Previous Papers</a></li>
+                <li><a href="/syllabus"><i class="fas fa-chevron-right"></i> Syllabus</a></li>
+                <li><a href="/contact"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Contact Info</h4>
+            <p><i class="fas fa-envelope"></i> msbtestudyhub@gmail.com</p>
+            <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+            <p><i class="fas fa-map-marker-alt"></i> Maharashtra, India</p>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>© 2026 MSBTE Study Hub. All rights reserved. | Designed for MSBTE Students</p>
+    </div>
+</footer>
+
+<!-- BACK TO TOP BUTTON -->
+<button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+</body>
+</html>

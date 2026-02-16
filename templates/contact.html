@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - MSBTE Study Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">
+        <i class="fas fa-graduation-cap"></i> MSBTE Study Hub
+    </div>
+    <div class="nav-links">
+        <a href="/"><i class="fas fa-home"></i> Home</a>
+        <a href="/model_answer"><i class="fas fa-file-pdf"></i> Model Answers</a>
+        <a href="/branch"><i class="fas fa-code-branch"></i> Branches</a>
+        <a href="/mcq"><i class="fas fa-question-circle"></i> MCQ</a>
+        <a href="/books"><i class="fas fa-book"></i> Books</a>
+        <a href="/contact" class="active"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+    <div class="mobile-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+    <h1><i class="fas fa-envelope"></i> Contact Us</h1>
+    <p>We're here to help and answer any questions you might have</p>
+</div>
+
+<!-- CONTACT SECTION -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 30px 8%; max-width: 1400px; margin: 0 auto;">
+    <!-- Contact Info Cards -->
+    <div class="card" style="text-align: center;">
+        <div class="card-icon" style="margin: 0 auto 20px;">
+            <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <h3>Visit Us</h3>
+        <p>MSBTE Study Hub<br>Maharashtra State<br>India - 400001</p>
+    </div>
+
+    <div class="card" style="text-align: center;">
+        <div class="card-icon" style="margin: 0 auto 20px;">
+            <i class="fas fa-phone"></i>
+        </div>
+        <h3>Call Us</h3>
+        <p>+91 98765 43210<br>+91 98765 43211</p>
+        <p style="color: #666; font-size: 14px;">Mon-Fri, 9am-6pm</p>
+    </div>
+
+    <div class="card" style="text-align: center;">
+        <div class="card-icon" style="margin: 0 auto 20px;">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <h3>Email Us</h3>
+        <p>msbtestudyhub@gmail.com<br>support@msbtestudyhub.com</p>
+        <p style="color: #666; font-size: 14px;">24/7 Support</p>
+    </div>
+</div>
+
+<!-- Contact Form -->
+<div class="page-header" style="margin-top: 20px;">
+    <h2><i class="fas fa-paper-plane"></i> Send us a Message</h2>
+    <p>We'll get back to you as soon as possible</p>
+</div>
+
+<div class="form-container">
+    <form action="/send_message" method="POST">
+        <div class="form-group">
+            <input type="text" name="name" placeholder="Your Full Name" required>
+        </div>
+        
+        <div class="form-group">
+            <input type="email" name="email" placeholder="Your Email Address" required>
+        </div>
+        
+        <div class="form-group">
+            <input type="text" name="subject" placeholder="Subject" required>
+        </div>
+        
+        <div class="form-group">
+            <textarea name="message" placeholder="Your Message" required></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn">
+            <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+    </form>
+</div>
+
+<!-- FAQ Section -->
+<div class="page-header" style="margin-top: 60px;">
+    <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+    <p>Quick answers to common questions</p>
+</div>
+
+<div class="grid-container" style="padding-top: 0;">
+    <div class="card">
+        <h3><i class="fas fa-clock" style="color: #FF6B00; margin-right: 10px;"></i> How fast do you respond?</h3>
+        <p>We typically respond within 24 hours on weekdays and within 48 hours on weekends.</p>
+    </div>
+
+    <div class="card">
+        <h3><i class="fas fa-file-pdf" style="color: #FF6B00; margin-right: 10px;"></i> Can I request study materials?</h3>
+        <p>Yes! Send us a message with the subject name and code, and we'll try to add it to our collection.</p>
+    </div>
+
+    <div class="card">
+        <h3><i class="fas fa-hand-holding-heart" style="color: #FF6B00; margin-right: 10px;"></i> Is this service free?</h3>
+        <p>Yes, all our study materials are completely free for MSBTE students.</p>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3><i class="fas fa-graduation-cap"></i> MSBTE Study Hub</h3>
+            <p>Your ultimate destination for MSBTE study materials, notes, and practice questions.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
+                <li><a href="/model_answer"><i class="fas fa-chevron-right"></i> Model Answers</a></li>
+                <li><a href="/branch"><i class="fas fa-chevron-right"></i> Branches</a></li>
+                <li><a href="/mcq"><i class="fas fa-chevron-right"></i> MCQ Practice</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Resources</h4>
+            <ul>
+                <li><a href="/books"><i class="fas fa-chevron-right"></i> Textbooks</a></li>
+                <li><a href="/previous-papers"><i class="fas fa-chevron-right"></i> Previous Papers</a></li>
+                <li><a href="/syllabus"><i class="fas fa-chevron-right"></i> Syllabus</a></li>
+                <li><a href="/contact"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Contact Info</h4>
+            <p><i class="fas fa-envelope"></i> msbtestudyhub@gmail.com</p>
+            <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+            <p><i class="fas fa-map-marker-alt"></i> Maharashtra, India</p>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>© 2026 MSBTE Study Hub. All rights reserved. | Designed for MSBTE Students</p>
+    </div>
+</footer>
+
+<!-- BACK TO TOP BUTTON -->
+<button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+</body>
+</html>

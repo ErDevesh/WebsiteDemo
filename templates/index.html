@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSBTE Study Hub - Your Learning Partner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">
+        <i class="fas fa-graduation-cap"></i> MSBTE Study Hub
+    </div>
+    <div class="nav-links">
+        <a href="/" class="active"><i class="fas fa-home"></i> Home</a>
+        <a href="/model_answer"><i class="fas fa-file-pdf"></i> Model Answers</a>
+        <a href="/branch"><i class="fas fa-code-branch"></i> Branches</a>
+        <a href="/mcq"><i class="fas fa-question-circle"></i> MCQ</a>
+        <a href="/books"><i class="fas fa-book"></i> Books</a>
+        <a href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+    <div class="mobile-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-text">
+        <h1 class="animate-text">Learn Smart. <span class="gradient-text">Score High.</span></h1>
+        <p class="animate-text-delay">Notes, Model Answers & MCQ Practice for MSBTE Students</p>
+
+        <form action="/search_notes" method="POST" class="search-box animate-form">
+            <div class="input-group">
+                <i class="fas fa-code-branch input-icon"></i>
+                <select name="branch" required>
+                    <option value="" disabled selected>Select Branch</option>
+                    <option>💻 Computer Engineering</option>
+                    <option>⚙️ Mechanical Engineering</option>
+                    <option>⚡ Electrical Engineering</option>
+                    <option>📱 Electronics Engineering</option>
+                    <option>🏗️ Civil Engineering</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <i class="fas fa-layer-group input-icon"></i>
+                <select name="semester" required>
+                    <option value="" disabled selected>Select Semester</option>
+                    <option>📚 Semester 1</option>
+                    <option>📚 Semester 2</option>
+                    <option>📚 Semester 3</option>
+                    <option>📚 Semester 4</option>
+                    <option>📚 Semester 5</option>
+                    <option>📚 Semester 6</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <i class="fas fa-diagram-project input-icon"></i>
+                <select name="scheme" required>
+                    <option value="" disabled selected>Select Scheme</option>
+                    <option>📋 I Scheme</option>
+                    <option>📋 K Scheme</option>
+                </select>
+            </div>
+
+            <div class="input-group search-field">
+                <i class="fas fa-search input-icon"></i>
+                <input type="text" name="keyword" placeholder="Search subject (e.g. WMN, DSA, Java)" required>
+            </div>
+            
+            <button type="submit" class="search-btn">
+                <i class="fas fa-search"></i> Search Notes
+            </button>
+        </form>
+        
+        <div class="stats-container">
+            <div class="stat-item">
+                <i class="fas fa-file-pdf"></i>
+                <span class="stat-number">1000+</span>
+                <span class="stat-label">PDF Notes</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-question-circle"></i>
+                <span class="stat-number">5000+</span>
+                <span class="stat-label">MCQ Questions</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-users"></i>
+                <span class="stat-number">10K+</span>
+                <span class="stat-label">Happy Students</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RESULTS SECTION -->
+{% if results is defined %}
+<section class="results-section">
+    <div class="section-header">
+        <h2><i class="fas fa-search-results"></i> Search Results</h2>
+        <p>Found {{ results|length }} notes matching your criteria</p>
+    </div>
+    
+    <div class="results-container">
+        {% if results %}
+            {% for note in results %}
+            <div class="result-card" data-aos="fade-up">
+                <div class="card-badge">
+                    {% if loop.index % 3 == 0 %}
+                        <span class="badge popular">🔥 Popular</span>
+                    {% elif loop.index % 2 == 0 %}
+                        <span class="badge new">🆕 New</span>
+                    {% else %}
+                        <span class="badge recommended">⭐ Recommended</span>
+                    {% endif %}
+                </div>
+                <div class="card-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </div>
+                <h3>{{ note[4] }}</h3>
+                <div class="subject-meta">
+                    <span><i class="fas fa-code-branch"></i> Computer</span>
+                    <span><i class="fas fa-layer-group"></i> Sem 4</span>
+                </div>
+                <p class="description">{{ note[5] }}</p>
+                <div class="card-footer">
+                    <a href="{{ note[6] }}" class="download-btn">
+                        <i class="fas fa-download"></i> Download PDF
+                    </a>
+                    <span class="file-size">2.4 MB</span>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Notes not available</h3>
+                <p>Contact us for study materials: msbtestudyhub@gmail.com</p>
+                <button class="contact-btn">
+                    <i class="fas fa-envelope"></i> Request Notes
+                </button>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+<!-- FEATURED CATEGORIES SECTION -->
+<section class="featured-categories">
+    <div class="section-header">
+        <h2><i class="fas fa-star"></i> Featured Categories</h2>
+        <p>Explore our most popular study materials</p>
+    </div>
+    
+    <div class="categories-grid">
+        <div class="category-card" onclick="window.location.href='/model_answer'">
+            <div class="category-icon">
+                <i class="fas fa-file-pdf"></i>
+            </div>
+            <h3>Model Answers</h3>
+            <p>Previous year papers with solutions</p>
+            <span class="category-count">450+ Papers</span>
+        </div>
+        
+        <div class="category-card" onclick="window.location.href='/branch'">
+            <div class="category-icon">
+                <i class="fas fa-code-branch"></i>
+            </div>
+            <h3>Branch Notes</h3>
+            <p>Subject-wise notes for all branches</p>
+            <span class="category-count">1000+ Notes</span>
+        </div>
+        
+        <div class="category-card" onclick="window.location.href='/mcq'">
+            <div class="category-icon">
+                <i class="fas fa-question-circle"></i>
+            </div>
+            <h3>MCQ Tests</h3>
+            <p>Practice with 5000+ questions</p>
+            <span class="category-count">50+ Subjects</span>
+        </div>
+        
+        <div class="category-card" onclick="window.location.href='/books'">
+            <div class="category-icon">
+                <i class="fas fa-book"></i>
+            </div>
+            <h3>Textbooks</h3>
+            <p>Recommended books for MSBTE</p>
+            <span class="category-count">200+ Books</span>
+        </div>
+    </div>
+</section>
+
+<!-- POPULAR SUBJECTS SECTION -->
+<section class="popular-subjects">
+    <div class="section-header">
+        <h2><i class="fas fa-fire"></i> Popular Subjects</h2>
+        <p>Most searched notes this week</p>
+    </div>
+    
+    <div class="subjects-grid">
+        <div class="subject-card">
+            <div class="subject-icon">
+                <i class="fas fa-code"></i>
+            </div>
+            <h3>Web Programming</h3>
+            <p>HTML, CSS, JavaScript, PHP</p>
+            <div class="subject-footer">
+                <span class="count">234 notes</span>
+                <span class="trend"><i class="fas fa-arrow-up"></i> +12%</span>
+            </div>
+        </div>
+        
+        <div class="subject-card">
+            <div class="subject-icon">
+                <i class="fas fa-database"></i>
+            </div>
+            <h3>Database Management</h3>
+            <p>SQL, MongoDB, MySQL</p>
+            <div class="subject-footer">
+                <span class="count">189 notes</span>
+                <span class="trend"><i class="fas fa-arrow-up"></i> +8%</span>
+            </div>
+        </div>
+        
+        <div class="subject-card">
+            <div class="subject-icon">
+                <i class="fas fa-cogs"></i>
+            </div>
+            <h3>Operating System</h3>
+            <p>Linux, Windows, Process Management</p>
+            <div class="subject-footer">
+                <span class="count">156 notes</span>
+                <span class="trend"><i class="fas fa-arrow-up"></i> +15%</span>
+            </div>
+        </div>
+        
+        <div class="subject-card">
+            <div class="subject-icon">
+                <i class="fas fa-network-wired"></i>
+            </div>
+            <h3>Computer Networks</h3>
+            <p>TCP/IP, OSI Model, Routing</p>
+            <div class="subject-footer">
+                <span class="count">145 notes</span>
+                <span class="trend"><i class="fas fa-arrow-up"></i> +10%</span>
+            </div>
+        </div>
+        
+        <div class="subject-card">
+            <div class="subject-icon">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>Wireless Network</h3>
+            <p>Mobile Communication, 4G/5G</p>
+            <div class="subject-footer">
+                <span class="count">134 notes</span>
+                <span class="trend"><i class="fas fa-arrow-up"></i> +20%</span>
+            </div>
+        </div>
+        
+        <div class="subject-card">
+            <div class="subject-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Software Engineering</h3>
+            <p>SDLC, Agile, Testing</p>
+            <div class="subject-footer">
+                <span class="count">123 notes</span>
+                <span class="trend"><i class="fas fa-arrow-up"></i> +7%</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS SECTION -->
+<section class="testimonials">
+    <div class="section-header">
+        <h2><i class="fas fa-comments"></i> What Students Say</h2>
+        <p>Join 10,000+ happy students</p>
+    </div>
+    
+    <div class="testimonials-grid">
+        <div class="testimonial-card">
+            <div class="testimonial-content">
+                <i class="fas fa-quote-left"></i>
+                <p>This website helped me score 85% in my exams. The model answers are very accurate!</p>
+            </div>
+            <div class="testimonial-author">
+                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Student">
+                <div>
+                    <h4>Rahul Sharma</h4>
+                    <p>Computer Engineering, Sem 6</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="testimonial-card">
+            <div class="testimonial-content">
+                <i class="fas fa-quote-left"></i>
+                <p>The MCQ practice section is amazing. I practiced 500+ questions before my exams.</p>
+            </div>
+            <div class="testimonial-author">
+                <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Student">
+                <div>
+                    <h4>Priya Patil</h4>
+                    <p>Electrical Engineering, Sem 4</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="testimonial-card">
+            <div class="testimonial-content">
+                <i class="fas fa-quote-left"></i>
+                <p>Best platform for MSBTE students. All notes are well organized and easy to download.</p>
+            </div>
+            <div class="testimonial-author">
+                <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Student">
+                <div>
+                    <h4>Suresh Yadav</h4>
+                    <p>Mechanical Engineering, Sem 5</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+    <div class="cta-content">
+        <h2>Ready to Start Learning?</h2>
+        <p>Access thousands of study materials for free</p>
+        <div class="cta-buttons">
+            <button class="cta-btn primary" onclick="window.location.href='/branch'">
+                <i class="fas fa-rocket"></i> Get Started
+            </button>
+            <button class="cta-btn secondary" onclick="window.location.href='/contact'">
+                <i class="fas fa-headset"></i> Contact Support
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3><i class="fas fa-graduation-cap"></i> MSBTE Study Hub</h3>
+            <p>Your ultimate destination for MSBTE study materials, notes, and practice questions. We provide free educational resources for all MSBTE students.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
+                <li><a href="/model_answer"><i class="fas fa-chevron-right"></i> Model Answers</a></li>
+                <li><a href="/branch"><i class="fas fa-chevron-right"></i> Branches</a></li>
+                <li><a href="/mcq"><i class="fas fa-chevron-right"></i> MCQ Practice</a></li>
+                <li><a href="/books"><i class="fas fa-chevron-right"></i> Books</a></li>
+                <li><a href="/contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Resources</h4>
+            <ul>
+                <li><a href="/previous-papers"><i class="fas fa-chevron-right"></i> Previous Papers</a></li>
+                <li><a href="/syllabus"><i class="fas fa-chevron-right"></i> Syllabus</a></li>
+                <li><a href="/important-questions"><i class="fas fa-chevron-right"></i> Important Questions</a></li>
+                <li><a href="/video-lectures"><i class="fas fa-chevron-right"></i> Video Lectures</a></li>
+                <li><a href="/study-tips"><i class="fas fa-chevron-right"></i> Study Tips</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Contact Info</h4>
+            <p><i class="fas fa-envelope"></i> msbtestudyhub@gmail.com</p>
+            <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+            <p><i class="fas fa-map-marker-alt"></i> Maharashtra, India</p>
+            <p><i class="fas fa-clock"></i> Mon-Sat: 9AM - 8PM</p>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>© 2026 MSBTE Study Hub. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #FF416C;"></i> for MSBTE Students</p>
+        <div class="footer-links">
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Use</a>
+            <a href="/sitemap">Sitemap</a>
+        </div>
+    </div>
+</footer>
+
+<!-- BACK TO TOP BUTTON -->
+<button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- LOADING ANIMATION -->
+<div class="loading-animation">
+    <div class="loader"></div>
+</div>
+
+<script>
+    // Hide loading animation after page load
+    window.addEventListener('load', function() {
+        document.querySelector('.loading-animation').style.display = 'none';
+    });
+
+    // Mobile menu toggle
+    document.querySelector('.mobile-menu').addEventListener('click', function() {
+        document.querySelector('.nav-links').classList.toggle('show');
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Add animation on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.category-card, .subject-card, .testimonial-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.6s ease';
+        observer.observe(el);
+    });
+</script>
+
+</body>
+</html>
