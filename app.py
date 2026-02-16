@@ -59,8 +59,11 @@ def search_notes():
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
 
-    c.execute("SELECT * FROM notes WHERE branch=? AND semester=? AND scheme=? AND subject LIKE ?",
-              (branch, semester, scheme, f"%{keyword}%"))
+    c.execute("""
+        SELECT * FROM notes 
+        WHERE branch=? AND semester=? AND scheme=? 
+        AND subject LIKE ?
+    """, (branch, semester, scheme, f"%{keyword}%"))
 
     results = c.fetchall()
     conn.close()
